@@ -9,9 +9,9 @@ export function Reveal({
   as: Tag = "div",
 }: {
   children: ReactNode;
-  className?: string;
-  delay?: number;
-  as?: ElementType;
+  className?: string | undefined;
+  delay?: number | undefined;
+  as?: ElementType | undefined;
 }) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
