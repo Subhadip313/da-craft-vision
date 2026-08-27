@@ -53,7 +53,7 @@ export function useStaticForm() {
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const submit = async (form: HTMLFormElement, required: string[]) => {
+  const submit = async (form: HTMLFormElement, required: string[], subject = "New website enquiry") => {
     const data = new FormData(form);
     const nextErrors: Record<string, string> = {};
 
@@ -72,6 +72,9 @@ export function useStaticForm() {
     setSubmitting(true);
     try {
       if (site.formEndpoint) {
+        data.append("_subject", subject);
+        data.append("_template", "table");
+        data.append("_replyto", email);
         await fetch(site.formEndpoint, {
           method: "POST",
           body: data,

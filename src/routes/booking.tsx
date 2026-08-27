@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { Field, WhatsAppFallback, inputClass, useStaticForm } from "@/components/site/forms";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FinalCta } from "@/components/site/sections";
 import { budgetOptions, industryOptions, serviceOptions } from "@/lib/site";
 
@@ -60,32 +61,42 @@ function Booking() {
                 noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
-                  void submit(e.currentTarget, ["service", "date", "businessName", "phone", "email"]);
+                  void submit(
+                    e.currentTarget,
+                    ["service", "date", "businessName", "phone", "email"],
+                    "New discovery call request - Da Craft Motion",
+                  );
                 }}
                 className="grid gap-6 rounded-lg border border-border bg-card p-7 md:grid-cols-2 md:p-10"
               >
                 <Field label="Service needed" htmlFor="service" error={errors["service"]}>
-                  <select id="service" name="service" className={inputClass} defaultValue="">
-                    <option value="" disabled>
-                      Select a service
-                    </option>
+                  <Select name="service" defaultValue="">
+                    <SelectTrigger id="service" className={`${inputClass} h-12 bg-charcoal-2/40`}>
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                    <SelectContent className="border-border bg-charcoal-2 text-foreground">
                     {serviceOptions.map((s) => (
-                      <option key={s} value={s}>
+                      <SelectItem key={s} value={s} className="py-2.5 focus:bg-orange focus:text-primary-foreground">
                         {s}
-                      </option>
+                      </SelectItem>
                     ))}
-                  </select>
+                    </SelectContent>
+                  </Select>
                 </Field>
 
                 <Field label="Industry" htmlFor="industry">
-                  <select id="industry" name="industry" className={inputClass} defaultValue="">
-                    <option value="">Select an industry</option>
-                    {industryOptions.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
+                  <Select name="industry" defaultValue="">
+                    <SelectTrigger id="industry" className={`${inputClass} h-12 bg-charcoal-2/40`}>
+                      <SelectValue placeholder="Select an industry" />
+                    </SelectTrigger>
+                    <SelectContent className="border-border bg-charcoal-2 text-foreground">
+                      {industryOptions.map((s) => (
+                        <SelectItem key={s} value={s} className="py-2.5 focus:bg-orange focus:text-primary-foreground">
+                          {s}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </Field>
 
                 <Field label="Preferred date" htmlFor="date" error={errors["date"]}>
@@ -97,14 +108,18 @@ function Booking() {
                 </Field>
 
                 <Field label="Budget range" htmlFor="budget">
-                  <select id="budget" name="budget" className={inputClass} defaultValue="">
-                    <option value="">Select a range</option>
-                    {budgetOptions.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
+                  <Select name="budget" defaultValue="">
+                    <SelectTrigger id="budget" className={`${inputClass} h-12 bg-charcoal-2/40`}>
+                      <SelectValue placeholder="Select a range" />
+                    </SelectTrigger>
+                    <SelectContent className="border-border bg-charcoal-2 text-foreground">
+                      {budgetOptions.map((s) => (
+                        <SelectItem key={s} value={s} className="py-2.5 focus:bg-orange focus:text-primary-foreground">
+                          {s}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </Field>
 
                 <Field label="Business name" htmlFor="businessName" error={errors["businessName"]}>

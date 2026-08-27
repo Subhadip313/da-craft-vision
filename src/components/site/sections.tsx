@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { useRef } from "react";
 import { Reveal } from "./Reveal";
 import { Marquee } from "./Marquee";
 import { Counter } from "./Counter";
@@ -71,29 +72,65 @@ export function ServiceCards({ limit }: { limit?: number }) {
 
 /* === INDUSTRIES STRIP === */
 export function IndustryStrip() {
+  const stripRef = useRef<HTMLDivElement>(null);
+
+  const scrollStrip = (direction: "next" | "previous") => {
+    stripRef.current?.scrollBy({
+      left: direction === "next" ? 280 : -280,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {industries.map((ind) => (
-        <Link
-          key={ind.slug}
-          to="/industries"
-          hash={ind.slug}
-          className="group relative flex h-56 w-64 shrink-0 snap-start flex-col justify-end overflow-hidden rounded-md border border-border bg-charcoal-2 p-5"
+    <div className="relative">
+      <div className="mb-4 flex justify-end gap-2">
+        <button
+          type="button"
+          aria-label="Show previous industries"
+          title="Previous industries"
+          onClick={() => scrollStrip("previous")}
+          className="hidden size-10 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:border-orange hover:text-orange focus-visible:border-orange md:flex"
         >
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 opacity-60 transition-opacity duration-500 group-hover:opacity-90"
-            style={{
-              background:
-                "linear-gradient(160deg, color-mix(in oklab, var(--orange) 22%, transparent), transparent 60%)",
-            }}
-          />
-          <span className="relative font-display text-xl font-bold">{ind.name}</span>
-          <span className="relative mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-orange">
-            See work
-          </span>
-        </Link>
-      ))}
+          <ArrowLeft className="size-4" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          aria-label="Show more industries"
+          title="Next industries"
+          onClick={() => scrollStrip("next")}
+          className="hidden size-10 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:border-orange hover:text-orange focus-visible:border-orange md:flex"
+        >
+          <ArrowRight className="size-4" aria-hidden="true" />
+        </button>
+      </div>
+      <div
+        ref={stripRef}
+        tabIndex={0}
+        aria-label="Industries we serve"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {industries.map((ind) => (
+          <Link
+            key={ind.slug}
+            to="/industries"
+            hash={ind.slug}
+            className="group relative flex h-56 w-64 shrink-0 snap-start flex-col justify-end overflow-hidden rounded-md border border-border bg-charcoal-2 p-5"
+          >
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 opacity-60 transition-opacity duration-500 group-hover:opacity-90"
+              style={{
+                background:
+                  "linear-gradient(160deg, color-mix(in oklab, var(--orange) 22%, transparent), transparent 60%)",
+              }}
+            />
+            <span className="relative font-display text-xl font-bold">{ind.name}</span>
+            <span className="relative mt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-orange">
+              See work
+            </span>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

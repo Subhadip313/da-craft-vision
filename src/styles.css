@@ -119,6 +119,11 @@
     overflow-x: hidden;
   }
 
+  select option {
+    background-color: var(--charcoal-2);
+    color: var(--cream);
+  }
+
   h1,
   h2,
   h3,

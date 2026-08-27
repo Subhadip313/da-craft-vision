@@ -7,12 +7,12 @@ export const site = {
   name: "Da Craft Motion",
   tagline: "Create | Inspire | Elevate.",
   // PLACEHOLDER — replace with the real WhatsApp number (digits only, incl. country code)
-  whatsappNumber: "910000000000",
+  whatsappNumber: "916290044365",
   // PLACEHOLDER — replace with the real business email
-  email: "hello@dacraftmotion.com",
+  email: "subhadipdutta180@gmail.com",
   // PLACEHOLDER — replace with the real phone number
-  phone: "+91 00000 00000",
-  address: "1/1, Baghajatin Station Road, Kolkata – 700032",
+  phone: "+91 62900 44365",
+  address: "B/32/A, Rabindrapally, Kolkata – 700086",
   hours: "Mon – Sat · 10:00 – 19:00 IST",
   socials: {
     instagram: "https://instagram.com/",
@@ -21,12 +21,13 @@ export const site = {
     youtube: "https://youtube.com/",
   },
   // PLACEHOLDER — Formspree / Netlify Forms endpoint. Empty string keeps the local success state + mailto fallback.
-  formEndpoint: "",
+  formEndpoint: "https://formsubmit.co/ajax/subhadipdutta180@gmail.com",
   // PLACEHOLDER — analytics IDs
   googleAnalyticsId: "G-XXXXXXXXXX",
   metaPixelId: "0000000000000",
   mapEmbedSrc:
-    "https://www.google.com/maps?q=Baghajatin%20Station%20Road%2C%20Kolkata%20700032&output=embed",
+    //"https://www.google.com/maps?q=Baghajatin%20Station%20Road%2C%20Kolkata%20700032&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.676017669713!2d88.38080457590087!3d22.478805986400264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027172e9ab5689%3A0xb366a5a73b3f4a64!2sRabindrapally%2C%20Garia%2C%20Kolkata%2C%20West%20Bengal%20700086!5e0!3m2!1sen!2sin!4v1787868919236!5m2!1sen!2sin",
 } as const;
 
 export const whatsappLink = `https://wa.me/${site.whatsappNumber}`;

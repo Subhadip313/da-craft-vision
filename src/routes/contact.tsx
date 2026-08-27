@@ -76,7 +76,7 @@ function Contact() {
                 noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
-                  void submit(e.currentTarget, ["name", "email", "message"]);
+                  void submit(e.currentTarget, ["name", "email", "message"], "New contact enquiry - Da Craft Motion");
                 }}
                 className="grid gap-5 rounded-lg border border-border bg-card p-7 md:p-9"
               >
