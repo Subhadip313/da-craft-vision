@@ -7,6 +7,8 @@ import { navLinks } from "@/lib/site";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const mobileLinkClassName =
+    "w-fit max-w-full py-1 font-display text-[clamp(2rem,9vw,2.75rem)] font-bold leading-tight uppercase tracking-tight text-foreground/85 transition-colors hover:text-orange sm:text-4xl";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -31,9 +33,11 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-[80] transition-all duration-500 ${
-        scrolled || menuOpen
-          ? "border-b border-border bg-charcoal-2/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+        menuOpen
+          ? "border-b border-border bg-charcoal"
+          : scrolled
+            ? "border-b border-border bg-charcoal-2/85 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="gutter flex h-18 items-center justify-between md:h-20">
@@ -75,18 +79,24 @@ export function Header() {
 
       {/* Mobile full-screen overlay menu */}
       <div
-        className={`fixed inset-0 top-18 z-[75] bg-charcoal transition-[opacity,visibility] duration-400 lg:hidden md:top-20 ${
-          menuOpen ? "visible opacity-100" : "invisible opacity-0"
+        aria-hidden={!menuOpen}
+        className={`fixed inset-x-0 bottom-0 top-18 z-[90] isolate overflow-y-auto overscroll-contain bg-charcoal transition-[opacity,visibility] duration-400 lg:hidden md:top-20 ${
+          menuOpen
+            ? "visible pointer-events-auto opacity-100"
+            : "invisible pointer-events-none opacity-0"
         }`}
       >
-        <nav aria-label="Mobile" className="gutter flex h-full flex-col justify-center gap-1 pb-32">
+        <nav
+          aria-label="Mobile"
+          className="gutter relative z-10 flex min-h-full flex-col items-start gap-0.5 py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:justify-center sm:py-12"
+        >
           {navLinks.map((link, i) => (
             <Link
               key={link.to}
               to={link.to}
               onClick={() => setMenuOpen(false)}
-              className="font-display text-4xl font-bold uppercase tracking-tight text-foreground/85 transition-colors hover:text-orange"
-              activeProps={{ className: "text-orange" }}
+              className={mobileLinkClassName}
+              activeProps={{ className: `${mobileLinkClassName} text-orange` }}
               activeOptions={{ exact: link.to === "/" }}
               style={{ transitionDelay: `${i * 30}ms` }}
             >
@@ -96,7 +106,7 @@ export function Header() {
           <Link
             to="/booking"
             onClick={() => setMenuOpen(false)}
-            className="mt-8 inline-flex w-fit rounded-sm bg-orange px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground"
+            className="mt-6 inline-flex min-h-12 w-fit max-w-full items-center rounded-sm bg-orange px-5 py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground sm:mt-8 sm:px-6 sm:py-4"
           >
             Book a Free Call
           </Link>
