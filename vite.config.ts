@@ -8,7 +8,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   vite: {
-    base: process.env.GITHUB_PAGES === "true" ? "/da-craft-vision/" : "/",
+    base: process.env["GITHUB_PAGES"] === "true" ? "/da-craft-vision/" : "/",
     server: {
       allowedHosts: ["6a9e-103-141-93-29.ngrok-free.app"],
     },
