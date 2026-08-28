@@ -172,6 +172,12 @@ npm run preview
 
 The Vite configuration uses the project's TanStack Start and Nitro setup. Deployment settings can be adjusted in `vite.config.ts` and the hosting provider configuration without changing route components.
 
+### GitHub Pages
+
+GitHub Pages cannot run the TanStack server used by `npm run dev`, so this project builds a static SPA artifact for Pages. The workflow in `.github/workflows/deploy-pages.yml` publishes `dist/client` and runs whenever changes are pushed to `main`.
+
+In the repository settings, open **Pages** and set **Source** to **GitHub Actions**. Do not use **Deploy from a branch** with the repository root, because that publishes `README.md` instead of the built website.
+
 ## Accessibility and Performance
 
 - Semantic landmarks and route-level headings are used throughout the site
