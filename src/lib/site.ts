@@ -7,11 +7,11 @@ export const site = {
   name: "Da Craft Motion",
   tagline: "Create | Inspire | Elevate.",
   // PLACEHOLDER — replace with the real WhatsApp number (digits only, incl. country code)
-  whatsappNumber: "916290044365",
+  whatsappNumber: "919831009951",
   // PLACEHOLDER — replace with the real business email
-  email: "subhadipdutta180@gmail.com",
+  email: "dacraftmotionstudio@gmail.com",
   // PLACEHOLDER — replace with the real phone number
-  phone: "+91 62900 44365",
+  phone: "+91 98310 09951",
   address: "B/32/A, Rabindrapally, Kolkata – 700086",
   hours: "Mon – Sat · 10:00 – 19:00 IST",
   socials: {
@@ -21,7 +21,7 @@ export const site = {
     youtube: "https://youtube.com/",
   },
   // PLACEHOLDER — Formspree / Netlify Forms endpoint. Empty string keeps the local success state + mailto fallback.
-  formEndpoint: "https://formsubmit.co/ajax/subhadipdutta180@gmail.com",
+  formEndpoint: "https://formsubmit.co/ajax/dacraftmotionstudio@gmail.com",
   // PLACEHOLDER — analytics IDs
   googleAnalyticsId: "G-XXXXXXXXXX",
   metaPixelId: "0000000000000",
